@@ -1,26 +1,326 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Axolert Professional Health App Color Scheme */
+  --primary-pink: #f3bdc8;
+  --secondary-blue: #758db9;
+  --accent-emerald: #10b981;
+  --alert-red: #ef4444;
+  --warning-orange: #f97316;
+  --background: #f8fafc;
+  --background-secondary: #ffffff;
+  --foreground: #1e293b;
+  --foreground-muted: #64748b;
+  --border: #e2e8f0;
+  --green-safe: #10b981;
+  --yellow-moderate: #f59e0b;
+  --red-danger: #ef4444;
+  --glass-light: rgba(255, 255, 255, 0.8);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), "Inter", "Segoe UI", system-ui,
+    -apple-system, sans-serif;
+  overflow-x: hidden;
+  overflow-y: auto;
+  line-height: 1.6;
+}
+
+/* Light glassmorphism effects for professional health theme */
+.glass {
+  background: var(--glass-light);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.glass::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(59, 130, 246, 0.05),
+    transparent
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.glass > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Gradient backgrounds */
+.gradient-primary {
+  background: linear-gradient(135deg, var(--primary-pink), var(--accent-blue));
+}
+
+.gradient-dark {
+  background: linear-gradient(
+    135deg,
+    var(--background),
+    var(--background-secondary)
+  );
+}
+
+/* Professional Axolert theme glow effects */
+.glow-pink {
+  box-shadow: 0 4px 20px rgba(243, 189, 200, 0.25);
+  animation: glow-pulse-pink 3s ease-in-out infinite alternate;
+}
+
+.glow-blue {
+  box-shadow: 0 4px 20px rgba(117, 141, 185, 0.25);
+  animation: glow-pulse-blue 3s ease-in-out infinite alternate;
+}
+
+.glow-emerald {
+  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.25);
+  animation: glow-pulse-emerald 3s ease-in-out infinite alternate;
+}
+
+.glow-red {
+  box-shadow: 0 4px 20px rgba(239, 68, 68, 0.25);
+  animation: glow-pulse-red 3s ease-in-out infinite alternate;
+}
+
+/* Professional glow animations */
+@keyframes glow-pulse-pink {
+  from {
+    box-shadow: 0 4px 20px rgba(243, 189, 200, 0.25);
+  }
+  to {
+    box-shadow: 0 8px 30px rgba(243, 189, 200, 0.4);
+  }
+}
+
+@keyframes glow-pulse-blue {
+  from {
+    box-shadow: 0 4px 20px rgba(117, 141, 185, 0.25);
+  }
+  to {
+    box-shadow: 0 8px 30px rgba(117, 141, 185, 0.4);
+  }
+}
+
+@keyframes glow-pulse-emerald {
+  from {
+    box-shadow: 0 4px 20px rgba(16, 185, 129, 0.25);
+  }
+  to {
+    box-shadow: 0 8px 30px rgba(16, 185, 129, 0.4);
+  }
+}
+
+@keyframes glow-pulse-red {
+  from {
+    box-shadow: 0 4px 20px rgba(239, 68, 68, 0.25);
+  }
+  to {
+    box-shadow: 0 8px 30px rgba(239, 68, 68, 0.4);
+  }
+}
+
+/* Professional outbreak simulation effects */
+.outbreak-glow {
+  animation: outbreak-pulse 2s ease-in-out infinite;
+  filter: drop-shadow(0 0 8px rgba(239, 68, 68, 0.6));
+}
+
+.moderate-glow {
+  animation: moderate-pulse 3s ease-in-out infinite;
+  filter: drop-shadow(0 0 6px rgba(245, 158, 11, 0.4));
+}
+
+@keyframes outbreak-pulse {
+  0% {
+    filter: drop-shadow(0 0 8px rgba(239, 68, 68, 0.6));
+  }
+  50% {
+    filter: drop-shadow(0 0 16px rgba(239, 68, 68, 0.9));
+  }
+  100% {
+    filter: drop-shadow(0 0 8px rgba(239, 68, 68, 0.6));
+  }
+}
+
+@keyframes moderate-pulse {
+  0% {
+    filter: drop-shadow(0 0 6px rgba(245, 158, 11, 0.4));
+  }
+  50% {
+    filter: drop-shadow(0 0 12px rgba(245, 158, 11, 0.7));
+  }
+  100% {
+    filter: drop-shadow(0 0 6px rgba(245, 158, 11, 0.4));
+  }
+}
+
+/* Enhanced tooltip animations */
+.leaflet-tooltip {
+  animation: tooltip-fade-in 0.3s ease-out;
+  transform-origin: bottom center;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+.custom-heatmap-tooltip {
+  transition: all 0.2s ease-out;
+}
+
+@keyframes tooltip-fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-pink);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-blue);
+}
+
+/* Leaflet popup styling */
+.leaflet-popup-content-wrapper {
+  background: var(--background-secondary) !important;
+  border-radius: 12px !important;
+  border: 1px solid var(--border) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+}
+
+.leaflet-popup-content {
+  margin: 0 !important;
+  color: var(--foreground) !important;
+}
+
+.leaflet-popup-tip {
+  background: var(--background-secondary) !important;
+  border: 1px solid var(--border) !important;
+}
+
+/* Animation utilities */
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+  .glass {
+    border-radius: 12px;
+    margin: 0 4px;
+  }
+
+  .glass::before {
+    border-radius: 12px;
+  }
+}
+
+/* Heatmap circle enhancements */
+.outbreak-glow {
+  animation: redGlow 2s ease-in-out infinite alternate;
+  filter: drop-shadow(0 0 8px rgba(220, 38, 38, 0.6));
+}
+
+.moderate-glow {
+  animation: orangeGlow 2.5s ease-in-out infinite alternate;
+  filter: drop-shadow(0 0 6px rgba(239, 68, 68, 0.4));
+}
+
+@keyframes redGlow {
+  from {
+    filter: drop-shadow(0 0 8px rgba(220, 38, 38, 0.6));
+  }
+  to {
+    filter: drop-shadow(0 0 16px rgba(220, 38, 38, 0.9));
+  }
+}
+
+@keyframes orangeGlow {
+  from {
+    filter: drop-shadow(0 0 6px rgba(239, 68, 68, 0.4));
+  }
+  to {
+    filter: drop-shadow(0 0 12px rgba(239, 68, 68, 0.7));
+  }
+}
+
+.glow-red {
+  animation: textGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes textGlow {
+  from {
+    box-shadow: 0 0 10px rgba(255, 77, 79, 0.5);
+  }
+  to {
+    box-shadow: 0 0 20px rgba(255, 77, 79, 0.8);
+  }
+}
+
+/* Custom tooltip styles for heatmap */
+.custom-heatmap-tooltip {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.custom-heatmap-tooltip .leaflet-tooltip-content {
+  padding: 0 !important;
+  margin: 0 !important;
+  background: transparent !important;
 }
